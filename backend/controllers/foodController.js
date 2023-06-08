@@ -53,7 +53,6 @@ const updateOneFood = async (req, res) => {
   }
 }
 
-
 const deleteOneFood = async (req, res) => {
   try {
     const result = await deleteFood(req.params.id);
@@ -63,11 +62,20 @@ const deleteOneFood = async (req, res) => {
   }
 }
 
+const checkPass = (req, res, next) => {
+  if (req.body.passCheck == "foodgenpass") {
+    next();
+  } else {
+    res.status(401).json({ success: false, message: "Not authorized"});
+  }
+}
+
 module.exports = {
   getFoods,
   addFood,
   getOneFood,
   getOneRandomFood,
   updateOneFood,
-  deleteOneFood
+  deleteOneFood,
+  checkPass
 }

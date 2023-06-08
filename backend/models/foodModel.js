@@ -4,7 +4,7 @@ const FoodSchema = mongoose.Schema({
   name: {
     type: String,
     required: [true, "A food needs to have a name"],
-    unique: [true, "This food alreadt exists"]
+    unique: [true, "This food already exists"]
   },
   prepTime: {
     type: Number,
@@ -22,6 +22,14 @@ const FoodSchema = mongoose.Schema({
 { 
   timestamps: true
 })
+
+FoodSchema.pre(/^find/, function (next) {
+  this.populate({
+    path: "category",
+    select: "name",
+  });
+  next();
+});
 
 const Food = mongoose.model("Food", FoodSchema);
 
