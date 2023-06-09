@@ -1,0 +1,44 @@
+:root {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.header {
+  text-align: center;
+
+   &-title {
+    text-transform: lowercase;
+   }
+
+   &-nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+
+    li {
+      display: inline-block;
+      margin: 0 6px;
+    }
+
+    &-link {
+      display: block; 
+      padding: 8px 12px;
+      background-color: #efefef;
+      border-radius: 100px;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 0.8rem;
+      color: slategray;
+
+      &:hover {
+        background-color: slategray;
+        color: white;
+      }
+    }
+    .active {
+      background-color: green;
+      color: white;
+    }
+   }
+}
