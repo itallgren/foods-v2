@@ -17,8 +17,8 @@ const Header = () => {
             </Link>
           </li>
           <li>
-            <Link className="header-nav-link" to="/wf">
-              Another Item
+            <Link className="header-nav-link" to="/random-food">
+              Randomize
             </Link>
           </li>
         </ul>

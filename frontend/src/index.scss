@@ -1,19 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+$fw-bold: 600;
+$fw-normal: 400;
+$fw-light: 300;
+$clr-red-dark: #A5243D;
+$clr-red-light: #FF928B;
+$clr-blue-dark: #0B3954;
+$clr-blue-light: #429EB3;
+$clr-purple-dark: #6154A0;
+$clr-purple-light: #9592C8;
+$clr-purple-xtra-light: #c4c1f7;
+$clr-yellow: #FCDC4D; 
+$clr-dark: #333333;
+$clr-light: #F7F7F2;
+
 :root {
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: "Poppins", sans-serif;
+  color: $clr-dark;
+}
+
+body {
+  margin: 0;
+}
+
+.main {
+  text-align: center;
+  margin-top: 42px;
 }
 
 .header {
   text-align: center;
+  background-color: $clr-purple-dark;
+  padding: 24px;
 
    &-title {
     text-transform: lowercase;
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+    color: $clr-purple-xtra-light;
    }
 
    &-nav {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    overflow: hidden;
 
     li {
       display: inline-block;
@@ -22,23 +52,139 @@
 
     &-link {
       display: block; 
-      padding: 8px 12px;
-      background-color: #efefef;
+      padding: 6px 12px;
+      background-color: $clr-light;
       border-radius: 100px;
       text-decoration: none;
       text-transform: uppercase;
       font-weight: bold;
       font-size: 0.8rem;
-      color: slategray;
+      color: $clr-purple-dark;
+      transition: all 200ms ease-in-out;
 
       &:hover {
-        background-color: slategray;
+        background-color: $clr-purple-light;
         color: white;
+        box-shadow: 0px 2px 11px 0px rgba(97, 84, 160, 1);
       }
     }
     .active {
-      background-color: green;
-      color: white;
+      color: $clr-purple-light;
+      box-shadow: 0px 2px 11px 0px rgba(97, 84, 160, 1);
+
+      &:hover {
+        color: $clr-purple-light;
+        background-color: $clr-light;
+      }
     }
    }
+}
+
+.suggestion {
+  transition: width 1000ms ease-in-out;
+  width: auto;
+  
+  &-box {
+    display: inline-block;
+    padding: 42px 32px;
+    margin: 24px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 11px 4px rgba(97, 84, 160, 0.28);
+    max-width: minmax(40vw, 1500px);
+    min-height: 10vh;
+    max-height: 40vh;
+  }
+
+  &-text {
+    font-size: 1.2rem;
+    margin: 0;
+
+    &:first-of-type {
+      font-weight: $fw-bold;
+    }
+  }
+
+  &-title {
+    font-size: 1.8rem;
+    margin-top: 0;
+    max-width: 50vw;
+    line-height: 1.2;
+    display: inline-block;
+  }
+
+  ion-icon {
+    font-size: 20px;
+    --ionicon-stroke-width: 64px;
+    margin-bottom: -4px;
+    margin-right: 4px;
+  }
+
+  &-info {
+    font-weight: $fw-bold;
+    margin-bottom: 20px;
+  }
+
+  span {
+    margin-right: 6px;
+  }
+  
+  // &-category span {
+  //   background-image: linear-gradient(white 50%, $clr-purple-xtra-light 50%);
+  //   background-repeat: no-repeat;
+  //   background-position-y: 0px;
+  //   transition: all 200ms cubic-bezier(.18, .74, .83, .67);
+  //   text-decoration: none;
+  //   cursor: pointer;
+    
+  //   &:hover {
+  //     background-position-y: -2px;
+  //     color: $clr-purple-dark
+  //   }
+  // }
+  
+  &-link {
+    margin-top: 12px;
+    margin-bottom: 18px;
+    display: block;
+    color: $clr-dark;
+    text-decoration: none;
+    display: inline;
+    
+    &:hover {
+      color: $clr-purple-dark
+    }
+  }
+}
+
+.btn {
+  font-weight: $fw-bold;
+  font-size: 1rem;
+  text-transform: lowercase;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  
+  &-primary {
+    background-color: $clr-purple-dark;
+    color: $clr-light;
+    transition: ease-out 200ms;
+    
+    &:hover {
+      transform: scale(1.1) rotate(2deg);
+    }
+
+    &:active {
+      background-color: $clr-purple-light;
+      transform: scale(1.2);
+    }
+  }
+}
+
+@keyframes linkHover {
+  from {
+    background-image: linear-gradient(white 100%, $clr-purple-xtra-light 0%);
+  } to {
+    background-image: linear-gradient(white 55%, $clr-purple-xtra-light 45%);
+  }
 }
