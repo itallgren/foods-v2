@@ -4,14 +4,17 @@ $fw-bold: 600;
 $fw-normal: 400;
 $fw-light: 300;
 $clr-red-dark: #A5243D;
-$clr-red-light: #FF928B;
+$clr-red-light: #ffa6a0;
 $clr-blue-dark: #0B3954;
 $clr-blue-light: #429EB3;
+$clr-green-dark: #3F7D20;
+$clr-green-light: #C9EE96;
 $clr-purple-dark: #6154A0;
 $clr-purple-light: #9592C8;
 $clr-purple-xtra-light: #c4c1f7;
 $clr-yellow: #FCDC4D; 
 $clr-dark: #333333;
+$clr-medium: #d4d4d4;
 $clr-light: #F7F7F2;
 
 :root {
@@ -23,9 +26,22 @@ body {
   margin: 0;
 }
 
+.container {
+  min-height: 100vh;
+  position: relative;
+}
+
 .main {
   text-align: center;
   margin-top: 42px;
+  padding: 24px 24px 84px;
+}
+
+ion-icon {
+  --ionicon-stroke-width: 64px;
+  font-size: 20px;
+  margin-bottom: -4px;
+  margin-right: 4px;
 }
 
 .header {
@@ -81,8 +97,15 @@ body {
 }
 
 .suggestion {
-  transition: width 1000ms ease-in-out;
-  width: auto;
+  &-text {
+    font-size: 1.2rem;
+    margin: 0;
+    animation: fadeInUp 300ms ease-in-out;
+    
+    &:first-of-type {
+      font-weight: $fw-bold;
+    }
+  }
   
   &-box {
     display: inline-block;
@@ -93,30 +116,18 @@ body {
     max-width: minmax(40vw, 1500px);
     min-height: 10vh;
     max-height: 40vh;
+    animation-delay: 500ms;
+    animation: fadeInUp 500ms ease-in-out;
   }
-
-  &-text {
-    font-size: 1.2rem;
-    margin: 0;
-
-    &:first-of-type {
-      font-weight: $fw-bold;
-    }
-  }
-
+  
   &-title {
     font-size: 1.8rem;
     margin-top: 0;
     max-width: 50vw;
     line-height: 1.2;
     display: inline-block;
-  }
-
-  ion-icon {
-    font-size: 20px;
-    --ionicon-stroke-width: 64px;
-    margin-bottom: -4px;
-    margin-right: 4px;
+    animation-delay: 600ms;
+    animation: fadeInUp 500ms ease-in-out;
   }
 
   &-info {
@@ -181,10 +192,170 @@ body {
   }
 }
 
-@keyframes linkHover {
-  from {
-    background-image: linear-gradient(white 100%, $clr-purple-xtra-light 0%);
-  } to {
-    background-image: linear-gradient(white 55%, $clr-purple-xtra-light 45%);
+.form {
+  display: inline-block;
+  padding: 36px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 11px 4px rgba(97, 84, 160, 0.28);
+  max-width: minmax(50vw, 1700px);
+  animation-delay: 500ms;
+  animation: fadeInUp 500ms ease-in-out;
+  text-align: left;
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  h1 {
+    margin-top: 0;
+    width: 30vw;
+  }
+  
+  &-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    
+    label {
+      font-weight: $fw-bold;
+      margin-bottom: 4px;
+    }
+
+    .optional {
+      color: $clr-purple-light;
+      font-size: 0.8rem;
+    }
+    
+    input:not(input[type=range]), select {
+      border: solid 3px $clr-medium;
+      border-radius: 5px;
+      padding: 2px 4px;
+      background-color: transparent;
+      
+      &:active, &:focus {
+        border-color: $clr-purple-dark;
+        outline: none;
+      }
+    }
+    
+    input[type="range"] {
+      border-radius: 5px;
+      -webkit-appearance: none;
+      appearance: none;
+      background: transparent;
+      cursor: pointer;
+
+      &::-webkit-slider-runnable-track {
+        background: $clr-purple-xtra-light;
+        border-radius: 3px;
+        height: 0.5rem;
+      }
+
+      &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        margin-top: -4px;
+        background-color: $clr-purple-dark;
+        height: 1rem;
+        width: 1rem;
+        border-radius: 4px;
+      }
+      
+      &::-moz-range-track {
+        background: $clr-purple-xtra-light;
+        border-radius: 3px;
+        height: 0.5rem;
+      }      
+
+      &::-moz-range-thumb {
+        border: none;
+        appearance: none;
+        margin-top: -4px;
+        background-color: $clr-purple-dark;
+        height: 1rem;
+        width: 1rem;
+        border-radius: 4px;
+      }
+
+      &:active, &:focus {
+        outline: solid 3px $clr-purple-dark;
+      }
+    }
+  
+    option {
+      background-color: transparent;
+    }
+  }
+
+  button {
+    max-width: 40%;
+  }
+}
+
+footer {
+  height: 48px;
+  background-color: $clr-purple-dark;
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  color: $clr-purple-xtra-light;
+  font-size: 0.8rem;
+
+  ion-icon {
+    font-size: 0.9rem;
+  }
+
+  a {
+     color: $clr-purple-light;
+     text-decoration: none;
+     border-bottom: solid $clr-purple-light;
+     margin-right: 6px;
+
+     &:hover {
+      color: $clr-purple-xtra-light;
+     }
+  }
+}
+
+.message {
+  width: 250px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  
+  &-error {
+    background-color: $clr-red-light;
+    color: $clr-red-dark;
+  }
+  
+  &-success {
+    background-color: $clr-green-light;
+    color: $clr-green-dark;
+  }
+}
+
+lottie-player {
+  width: 250px;
+  height: 250px;
+  animation: fadeIn 200ms ease-in-out;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  } 100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  } 100% {
+    opacity: 1;
   }
 }

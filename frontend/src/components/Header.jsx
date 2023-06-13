@@ -13,14 +13,19 @@ const Header = () => {
           </li>
           <li>
             <Link className="header-nav-link" to="add-food">
-              Add new food
+              Lägg till ny
             </Link>
           </li>
           <li>
             <Link className="header-nav-link" to="/random-food">
-              Randomize
+              Random
             </Link>
           </li>
+          {/* <li>
+            <Link className="header-nav-link" to="/food-planner">
+              Matlista
+            </Link>
+          </li> */}
         </ul>
       </nav>
     </header>
