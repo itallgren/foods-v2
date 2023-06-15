@@ -108,12 +108,12 @@ ion-icon {
   }
   
   &-box {
-    display: inline-block;
+    display: block;
     padding: 42px 32px;
-    margin: 24px;
+    margin: 24px auto;
     border-radius: 10px;
     box-shadow: 0px 2px 11px 4px rgba(97, 84, 160, 0.28);
-    max-width: minmax(40vw, 1500px);
+    max-width: 400px;
     min-height: 10vh;
     max-height: 40vh;
     animation-delay: 500ms;
@@ -128,6 +128,18 @@ ion-icon {
     display: inline-block;
     animation-delay: 600ms;
     animation: fadeInUp 500ms ease-in-out;
+  }
+
+  span.title {
+    font-size: 1rem;
+  }
+  
+  span.help-text {
+    margin-top: 6px;
+    display: block;
+    font-size: 0.8rem;
+    font-style: italic;
+    color: $clr-purple-light;
   }
 
   &-info {
@@ -165,6 +177,13 @@ ion-icon {
       color: $clr-purple-dark
     }
   }
+
+  #loading {
+    color: $clr-purple-dark;
+    font-size: 2.5rem;
+    --ionicon-stroke-width: 32px;
+    animation: loadAnimation infinite 700ms;
+  }
 }
 
 .btn {
@@ -197,7 +216,8 @@ ion-icon {
   padding: 36px;
   border-radius: 10px;
   box-shadow: 0px 2px 11px 4px rgba(97, 84, 160, 0.28);
-  max-width: minmax(50vw, 1700px);
+  margin: auto;
+  max-width: 350px;
   animation-delay: 500ms;
   animation: fadeInUp 500ms ease-in-out;
   text-align: left;
@@ -210,6 +230,7 @@ ion-icon {
   h1 {
     margin-top: 0;
     width: 30vw;
+    animation: fadeInUp 500ms ease-in-out;
   }
   
   &-group {
@@ -320,7 +341,8 @@ footer {
 }
 
 .message {
-  width: 250px;
+  box-sizing: border-box;
+  max-width: 200px;
   padding: 8px 12px;
   border-radius: 10px;
   font-size: 0.9rem;
@@ -342,6 +364,106 @@ lottie-player {
   animation: fadeIn 200ms ease-in-out;
 }
 
+.homepage {
+  padding: 0 24px;
+  animation: fadeInUp 300ms ease-in-out;
+
+  &-title {
+    animation: fadeInUp 500ms ease-in-out;
+  }
+
+  p {
+    margin: auto;
+    margin-bottom: 36px;
+    max-width: 500px;
+  }
+
+  .btn {
+    text-decoration: none;
+
+    ion-icon {
+      --ionicon-stroke-width: 46px;
+      margin: 0 0 -4px 6px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: 12px 12px 100px;
+  }
+
+  h1 {
+    width: 100% !important;
+    font-size: 1.6rem;
+  }
+
+  h1.header-title {
+    font-size: 2rem;
+    line-height: 1;
+  }
+
+  .form button {
+    margin-top: 12px;
+    max-width: 100% !important;
+  }
+
+  .suggestion {
+    &-box {
+      max-width: 95vw;
+      margin: 24px;
+    }
+
+    &-info {
+      margin-bottom: 0;
+    }
+
+    &-text {
+      font-size: 1rem;
+    }
+
+    &-title {
+      font-size: 1.2rem;
+      max-width: 100vw;
+    }
+  
+    a, span {
+      margin: 0;
+    }
+
+    &-time, &-link, &-category {
+      display: block;
+      margin-bottom: 12px !important;
+    }
+  }
+
+  footer {
+    height: 64px;
+  
+    span {
+      display: block;
+    }
+  }
+
+  .form {
+    max-width: 95vw;
+    margin: 0 24px 24px;
+
+    .message {
+      box-sizing: border-box;
+      margin: 24px 0 0;
+      padding: 12px;
+      width: 100%;
+    }
+  }
+
+  .homepage {
+    p {
+      max-width: 90vw;
+    }
+  }
+}
+
 @keyframes fadeInUp {
   0% {
     opacity: 0;
@@ -357,5 +479,13 @@ lottie-player {
     opacity: 0;
   } 100% {
     opacity: 1;
+  }
+}
+
+@keyframes loadAnimation {
+  0% {
+    transform: rotate(0deg);
+  } 100% {
+    transform: rotate(360deg);
   }
 }

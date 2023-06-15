@@ -25,20 +25,34 @@ const RandomFood = () => {
       <p className="suggestion-text">Då tycker jag att du ska testa...</p>
       <div className="suggestion-box">
         <h2 className="suggestion-title">
-          {randomFood ? randomFood.name : "* generating food for you *"}
+          {randomFood ? (
+            randomFood.name
+          ) : (
+            <>
+              <span className="title">* hämtar matförslag åt dig *</span>
+              <span className="help-text">
+                databasen kan ta ett tag att komma igång första gången du
+                testar!
+              </span>
+            </>
+          )}
         </h2>
         <div className="suggestion-info">
-          <span className="suggestion-category">
-            <ion-icon name="pricetag-outline"></ion-icon>
-            <span>{randomFoodsCategories}</span>
-          </span>
+          {randomFood && (
+            <span className="suggestion-category">
+              <ion-icon name="pricetag-outline"></ion-icon>
+              <span>{randomFoodsCategories}</span>
+            </span>
+          )}
 
-          <span className="suggestion-time">
-            <ion-icon name="time-outline"></ion-icon>
-            <span>{randomFood.prepTime} min</span>
-          </span>
+          {randomFood && (
+            <span className="suggestion-time">
+              <ion-icon name="time-outline"></ion-icon>
+              <span>{randomFood.prepTime} min</span>
+            </span>
+          )}
 
-          {randomFood.recipeUrl ? (
+          {randomFood.recipeUrl && (
             <span className="suggestion-recipe">
               <a
                 className="suggestion-link"
@@ -50,13 +64,15 @@ const RandomFood = () => {
                 Recept
               </a>
             </span>
-          ) : (
-            ""
           )}
         </div>
-        <button className="btn btn-primary" onClick={getARandomFood}>
-          Ge nytt förslag
-        </button>
+        {randomFood ? (
+          <button className="btn btn-primary" onClick={getARandomFood}>
+            Ge nytt förslag
+          </button>
+        ) : (
+          <ion-icon name="refresh-circle-outline" id="loading"></ion-icon>
+        )}
       </div>
     </div>
   );

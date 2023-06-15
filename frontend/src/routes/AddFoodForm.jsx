@@ -5,7 +5,7 @@ import { getAllFoodCategories, postNewFood } from "../foodService";
 const AddFoodForm = () => {
   const [foodCategories, setfoodCategories] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  // const [success, setSuccess] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(false);
   const [heading, setHeading] = useState("Lägg till ny mat");
 
   const [name, setName] = useState("");
@@ -13,6 +13,8 @@ const AddFoodForm = () => {
   const [recipeUrl, setRecipeUrl] = useState("");
   const [prepTime, setPrepTime] = useState(0);
   const [passCheck, setPassCheck] = useState("");
+
+  const pass = import.meta.env.VITE_PASS;
 
   const setValue = (event) => {
     const id = event.target.id;
@@ -34,27 +36,34 @@ const AddFoodForm = () => {
     event.preventDefault();
     const newFood = { name, category, recipeUrl, prepTime, passCheck };
 
-    try {
-      const result = await postNewFood(newFood);
+    if (passCheck != pass) {
+      setErrorMessage(true);
+      return setTimeout(() => {
+        setErrorMessage(false);
+      }, 3000);
+    } else {
+      try {
+        const result = await postNewFood(newFood);
 
-      if (result.data.data) {
-        // setSuccess(true);
-        setIsSubmitted(true);
-        setHeading("Kokar ihop maten...");
-
-        setTimeout(() => {
-          setHeading("Färdigt!");
-          setIsSubmitted(false);
+        if (result.data.data) {
+          // setSuccess(true);
+          setIsSubmitted(true);
+          setHeading("Kokar ihop maten...");
 
           setTimeout(() => {
-            setHeading("Lägg till ny mat");
-            setPrepTime(0);
-          }, 1500);
-        }, 3000);
+            setHeading("Färdigt!");
+            setIsSubmitted(false);
+
+            setTimeout(() => {
+              setHeading("Lägg till ny mat");
+              setPrepTime(0);
+            }, 1500);
+          }, 3000);
+        }
+      } catch (err) {
+        // setSuccess(false);
+        console.log(err.response.statusText);
       }
-    } catch (err) {
-      // setSuccess(false);
-      console.log(err.response.statusText);
     }
   };
 
@@ -118,20 +127,14 @@ const AddFoodForm = () => {
             <input id="passCheck" type="password" onChange={setValue} />
           </div>
 
-          <button
-            // type="submit"
-            onClick={handleSubmit}
-            className="btn btn-primary"
-          >
+          <button onClick={handleSubmit} className="btn btn-primary">
             Lägg till
           </button>
-          {/* {success ? (
-            <p className="message message-success">Receptet tillagt!</p>
-          ) : (
+          {errorMessage && (
             <p className="message message-error">
               Du har inte tillåtelse att lägga till nya recept
             </p>
-          )} */}
+          )}
         </form>
       ) : (
         <lottie-player
